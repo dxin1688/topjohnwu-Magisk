@@ -1,0 +1,25 @@
+name: 调用同步 Release 工作流
+
+on:
+  workflow_dispatch:  # 也可以按需添加其他触发条件
+    inputs:
+      upstream_repo:
+        description: '上游仓库 (格式: owner/repo)'
+        required: true
+        default: 'Linuxoid-cn/Mi8G3-Unlocker'
+        type: string
+      tags:
+        description: '要同步的上游 Release Tag，多个用英文逗号分隔 (例如: v6.0.0, v6.1.0)'
+        required: true
+        type: string
+      target_branch:
+        description: '目标分支 (留空则自动检测默认分支)'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  call-sync:
+    uses: dxin1688/Github-Release-Workflows/.github/workflows/multiple_tag_manual-sync-release.yml@main
+    permissions:
+      contents: write            # 必须，因为需要创建 Release 和 Tag
