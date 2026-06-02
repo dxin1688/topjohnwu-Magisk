@@ -21,5 +21,9 @@ on:
 jobs:
   call-sync:
     uses: dxin1688/Github-Release-Workflows/.github/workflows/multiple_tag_manual-sync-release.yml@main
+    with:
+      upstream_repo: ''
+      tags: ''
+      target_branch: ''          # 留空则自动检测
     permissions:
       contents: write            # 必须，因为需要创建 Release 和 Tag
